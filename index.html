@@ -1,41 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bommerman</title>
-    <style>
-        body{
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            background-color: slategrey;
-        }
-        #game-board{
-            background-color: lightcyan;
-            width:100vmin;
-            height: 100vmin;
-            display: grid;
-            grid-template-rows: repeat(21, 1fr);
-            grid-template-columns: repeat(21,1fr);
-        }
-        .player1 {
-            background-color: hsl(200, 100%, 50%);
-            border: .25vmin solid black
-        }
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pac-man</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="grid"></div>
 
-        .powerUp {
-            background-color: hsl(17, 100%, 50%);
-            border: .25vmin solid black
-        }
-    </style>
-    <script src="game.js" defer type="module"></script>
-</head>
-<body>
-    <div id="game-board"></div>
-</body>
+    <h3>Score:<span id="score"></span></h3>
+
+  </body>
 </html>
