@@ -1,4 +1,5 @@
 
+import { createBoard } from "./map.js"
 import { update as updatePacBOY, draw as drawPacBOy } from "./pacBoy.js"
 
 let lastRenderTime = 0
@@ -27,6 +28,7 @@ function update(){
 
 function draw(){
     gameBoard.innerHTML =''
+    createBoard(gameBoard)
     drawPacBOy(gameBoard)
 
 }

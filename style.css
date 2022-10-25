@@ -23,7 +23,7 @@ body {
     height: 20px;
 } */
 
-.pac-dot {
+.pacdot {
     background-color: green;   
     border: 1vmin solid black;
     box-sizing: border-box;
@@ -56,7 +56,7 @@ body {
 
 .pacboy {
     background-color: yellow;
-    border-radius: 10px;
+    border-radius: 100px;
 }
 
 .scared-ghost {

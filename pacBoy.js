@@ -1,15 +1,15 @@
 import { getInputDirection } from "./input.js"
 
 
-const pacboy = [{x:12 ,y:12}]
+const pacboy = [{x:14 ,y:18}]
 
 export function update(){
     const inputDirection = getInputDirection()
     for (let i = pacboy.length-2; i >=0; i--){
         pacboy[i+1]={...pacboy[i]}
     }
-    pacboy[0].x += 1  //inputDirection
-    pacboy[0].y += 0 //inputDirection
+    pacboy[0].x += inputDirection.x
+    pacboy[0].y += inputDirection.y
     console.log('up')
 }
 
