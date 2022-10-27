@@ -45,10 +45,20 @@
 export function createBoard(gameBoard){
     layout.forEach((blocktype, index) =>{
         const block = document.createElement('div')
-        if(layout[index]===1){
+        if(blocktype === 1){
             block.classList.add('wall')
+        }else if(blocktype ===0){
+            block.classList.add('empty')
+            block.id = index
         }
         gameBoard.appendChild(block)
     })
+}
+
+export function deleteEEE(gameBoard){
+    layout.forEach((blocktype1, index1)=>{
+        
+    })
+
 }
 
