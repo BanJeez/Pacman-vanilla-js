@@ -41,23 +41,40 @@
 
     //create your board
 
+    let xx = 1
+    let yy = 1
+
 
 export function createBoard(gameBoard){
     layout.forEach((blocktype, index) =>{
         const block = document.createElement('div')
+        block.id = index
+        block.style.gridRowStart = yy// y
+        block.style.gridColumnStart = xx //x
+
         if(blocktype === 1){
             block.classList.add('wall')
-        }else if(blocktype ===0){
-            block.classList.add('empty')
-            block.id = index
+
+            //gameBoard.appendChild(block)
         }
+        console.log(yy)
+        console.log('this is xx '+ xx)
         gameBoard.appendChild(block)
+        if (xx < 28 ){
+            xx += 1
+        }else if (xx == 28){
+            yy +=1
+            xx = 1
+        }
+        if (yy == 29){
+            yy = 1
+        }
     })
 }
 
 export function deleteEEE(gameBoard){
     layout.forEach((blocktype1, index1)=>{
-        
+
     })
 
 }
