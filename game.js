@@ -1,6 +1,7 @@
 
 import { createBoard } from "./map.js"
 import { update as updatePacBOY, draw as drawPacBOy } from "./pacBoy.js"
+import {update as updateFood, draw as drawFood} from "./food.js"
 
 let lastRenderTime = 0
 const GAME_SPEED = 2
@@ -24,6 +25,7 @@ window.requestAnimationFrame(main)
 
 function update(){
     updatePacBOY()
+    updateFood()
 
 }
 
@@ -32,6 +34,7 @@ function draw(){
     gameBoard.innerHTML =''
     createBoard(gameBoard)
     drawPacBOy(gameBoard)
+    drawFood(gameBoard)
     //pac.remove()
     
 
