@@ -88,7 +88,7 @@ function gameLoop(pacman, ghosts) {
   }
   // 6. Check if Pacman eats a power pill
   if (gameBoard.objectExist(pacman.pos, OBJECT_TYPE.PILL)) {
-    playAudio(soundPill);
+    // playAudio(soundPill);
 
     gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.PILL]);
 
