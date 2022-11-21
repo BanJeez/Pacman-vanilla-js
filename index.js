@@ -16,9 +16,10 @@ const scoreTable = document.querySelector('#score');
 const startButton = document.querySelector('#start-button');
 // Game constants
 const POWER_PILL_TIME = 10000; // ms
-const GLOBAL_SPEED = 80; // ms
+const GLOBAL_SPEED = 30; // ms
 const gameBoard = GameBoard.createGameBoard(gameGrid, LEVEL);
 // Initial setup
+let lastRenderTime = 0
 let score = 0;
 let timer = null;
 let gameWin = false;
@@ -140,8 +141,17 @@ function startGame() {
   ];
 
   // Gameloop
-  timer = setInterval(() => gameLoop(pacman, ghosts), GLOBAL_SPEED);
+  //timer = setInterval(() => gameLoop(pacman, ghosts), GLOBAL_SPEED);
+  function mainLoop(currentTime){
+      window.requestAnimationFrame(mainLoop)
+      const secondsSinceLastRender = (currentTime-lastRenderTime)/1000
+      if (secondsSinceLastRender < 1/ GLOBAL_SPEED) return
+      lastRenderTime = currentTime
+      gameLoop(pacman, ghosts)
+    }
+    window.requestAnimationFrame(mainLoop)
 }
+
 
 // Initialize game
 startButton.addEventListener('click', startGame);
