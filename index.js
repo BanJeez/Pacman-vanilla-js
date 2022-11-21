@@ -21,6 +21,7 @@ const POWER_PILL_TIME = 10000; // ms
 const GLOBAL_SPEED = 30; // ms
 const gameBoard = GameBoard.createGameBoard(gameGrid, LEVEL);
 // Initial setup
+let time = 0
 let lastRenderTime = 0
 let score = 0;
 let lives = 3
