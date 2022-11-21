@@ -10,7 +10,9 @@ import Ghost from './Ghost.js';
 // import soundGameStart from './sounds/game_start.wav';
 // import soundGameOver from './sounds/death.wav';
 // import soundGhost from './sounds/eat_ghost.wav';
-// Dom Elements
+// Dom Elementsme
+const lives = document.querySelector('#lives')
+const time = document.querySelector('#timer')
 const gameGrid = document.querySelector('#game');
 const scoreTable = document.querySelector('#score');
 const startButton = document.querySelector('#start-button');
