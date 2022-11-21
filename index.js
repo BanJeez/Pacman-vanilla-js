@@ -64,7 +64,13 @@ function checkCollision(pacman, ghosts) {
       collidedGhost.pos = collidedGhost.startPos;
       score += 100;
     } else if (lives > 0) {
-        lives - 1;
+        gameBoard.removeObject(collidedGhost.pos, [
+            OBJECT_TYPE.GHOST,
+            OBJECT_TYPE.SCARED,
+            collidedGhost.name
+          ]);
+          collidedGhost.pos = collidedGhost.startPos;
+        lives -= 1;
     } else {
       gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.PACMAN]);
       gameBoard.rotateDiv(pacman.pos, 0);
@@ -128,6 +134,7 @@ function startGame() {
   gameWin = false;
   powerPillActive = false;
   score = 0;
+  lives = 3
 
   startButton.classList.add('hide');
 
