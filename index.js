@@ -12,7 +12,7 @@ import Ghost from './Ghost.js';
 // import soundGhost from './sounds/eat_ghost.wav';
 // Dom Elementsme
 const livesTotal = document.querySelector('#lives')
-const time = document.querySelector('#timer')
+const timeTotal = document.querySelector('#timer')
 const gameGrid = document.querySelector('#game');
 const scoreTable = document.querySelector('#score');
 const startButton = document.querySelector('#start-button');
