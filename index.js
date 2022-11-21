@@ -11,7 +11,7 @@ import Ghost from './Ghost.js';
 // import soundGameOver from './sounds/death.wav';
 // import soundGhost from './sounds/eat_ghost.wav';
 // Dom Elementsme
-const lives = document.querySelector('#lives')
+const livesTotal = document.querySelector('#lives')
 const time = document.querySelector('#timer')
 const gameGrid = document.querySelector('#game');
 const scoreTable = document.querySelector('#score');
@@ -23,6 +23,7 @@ const gameBoard = GameBoard.createGameBoard(gameGrid, LEVEL);
 // Initial setup
 let lastRenderTime = 0
 let score = 0;
+let lives = 3
 let timer = null;
 let gameWin = false;
 let powerPillActive = false;
@@ -62,6 +63,8 @@ function checkCollision(pacman, ghosts) {
       ]);
       collidedGhost.pos = collidedGhost.startPos;
       score += 100;
+    } else if (lives > 0) {
+        lives - 1;
     } else {
       gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.PACMAN]);
       gameBoard.rotateDiv(pacman.pos, 0);
@@ -116,6 +119,7 @@ function gameLoop(pacman, ghosts) {
   }
   // 9. Show new score
   scoreTable.innerHTML = score;
+  livesTotal.innerHTML = lives
 }
 
 function startGame() {
