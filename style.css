@@ -71,7 +71,7 @@
     justify-content: center;
     width: 200px;
     height: 50px;
-    border: 5px darkblue solid;
+    border: 5px rgb(38, 182, 33) solid;
     background: black;
     margin-top: 20px;
     color: white;
@@ -80,6 +80,18 @@
   }
 
   #start-button {
+    margin-top: 20px;
+  }
+
+  #restart-button {
+    margin-top: 20px;
+  }
+
+  #pause-button {
+    margin-top: 20px;
+  }
+
+  #unpause-button {
     margin-top: 20px;
   }
   

@@ -7,10 +7,13 @@ import Ghost from './Ghost.js';
 
 // Dom Elementsme
 const livesTotal = document.querySelector('#lives')
-const timeTotal = document.querySelector('#timer')
+const timeTotal = document.querySelector('#time')
 const gameGrid = document.querySelector('#game');
 const scoreTable = document.querySelector('#score');
 const startButton = document.querySelector('#start-button');
+const restartButton = document.querySelector('#restart-button');
+const pauseButton = document.querySelector('#pause-button');
+const unPauseButton = document.querySelector('#unpause-button');
 
 // Game constants
 const POWER_PILL_TIME = 10000; // ms
@@ -117,6 +120,7 @@ function gameLoop(pacman, ghosts) {
   // 9. Show new score
   scoreTable.innerHTML = score;
   livesTotal.innerHTML = lives
+  timeTotal.innerHTML = score
 }
 
 function startGame() {
@@ -126,8 +130,12 @@ function startGame() {
   powerPillActive = false;
   score = 0;
   lives = 3
+  time = 0
 
   startButton.classList.add('hide');
+  
+  restartButton.classList.remove('hide');
+  pauseButton.classList.remove('hide');
 
   gameBoard.createGrid(LEVEL);
 
@@ -161,12 +169,38 @@ function startGame() {
         const secondsSinceLastRender = (currentTime-lastRenderTime)/1000
         if (secondsSinceLastRender < 1/ GLOBAL_SPEED) return
         lastRenderTime = currentTime
+        //console.log(currentTime/1000)
+        //time = currentTime
         gameLoop(pacman, ghosts)
     }
+    window.requestAnimationFrame(mainLoop)
+}
+
+function restartGameMain(){
+    window.location = '/'
+}
+
+function pauseGameMain(){
+    pauseGame = true
+    pauseButton.classList.add('hide');
+    unPauseButton.classList.remove('hide');   
+}
+
+function hide(){
+    restartButton.classList.add('hide');
+    pauseButton.classList.add('hide');
+    unPauseButton.classList.add('hide')
+}
+
+function unPause(){
     window.requestAnimationFrame(mainLoop)
 }
 
 
 
 // Initialize game
+hide()
 startButton.addEventListener('click', startGame);
+restartButton.addEventListener('click', restartGameMain)
+pauseButton.addEventListener('click', pauseGameMain)
+unPauseButton.addEventListener('click', unPause)
