@@ -19,6 +19,13 @@ const unPauseButton = document.querySelector('#unpause-button');
 const POWER_PILL_TIME = 10000; // ms
 const GLOBAL_SPEED = 30; // ms
 const gameBoard = GameBoard.createGameBoard(gameGrid, LEVEL);
+const pacman = new Pacman(2, 287);
+const ghosts = [
+    new Ghost(5, 188, randomMovement, OBJECT_TYPE.BLINKY),
+    new Ghost(4, 209, randomMovement, OBJECT_TYPE.PINKY),
+    new Ghost(3, 230, randomMovement, OBJECT_TYPE.INKY),
+    new Ghost(2, 251, randomMovement, OBJECT_TYPE.CLYDE)
+  ];
 
 // Initial setup
 let time = 0
@@ -120,7 +127,7 @@ function gameLoop(pacman, ghosts) {
   // 9. Show new score
   scoreTable.innerHTML = score;
   livesTotal.innerHTML = lives
-  timeTotal.innerHTML = score
+  timeTotal.innerHTML = time
 }
 
 function startGame() {
@@ -133,47 +140,39 @@ function startGame() {
   time = 0
 
   startButton.classList.add('hide');
-  
-  restartButton.classList.remove('hide');
   pauseButton.classList.remove('hide');
 
   gameBoard.createGrid(LEVEL);
 
-  const pacman = new Pacman(2, 287);
   gameBoard.addObject(287, [OBJECT_TYPE.PACMAN]);
   document.addEventListener('keydown', (e) =>
     pacman.handleKeyInput(e, gameBoard.objectExist.bind(gameBoard))
   );
 
-  const ghosts = [
-    new Ghost(5, 188, randomMovement, OBJECT_TYPE.BLINKY),
-    new Ghost(4, 209, randomMovement, OBJECT_TYPE.PINKY),
-    new Ghost(3, 230, randomMovement, OBJECT_TYPE.INKY),
-    new Ghost(2, 251, randomMovement, OBJECT_TYPE.CLYDE)
-  ];
+  // Gameloop ininalized
+    window.requestAnimationFrame(mainLoop)
+}
 
-  // Gameloop
-  //timer = setInterval(() => gameLoop(pacman, ghosts), GLOBAL_SPEED);
-  function mainLoop(currentTime){
-        if (gameOverMain){
-            if(confirm('you loss. press ok')){
-                gameOverMain = false
-                window.location = '/'
-            }
-            return
+function mainLoop(currentTime){
+    if (gameOverMain){
+        if(confirm('you loss. press ok')){
+            gameOverMain = false
+            window.location = '/'
         }
-        if (pauseGame){
-            return
-        }
-        window.requestAnimationFrame(mainLoop)
-        const secondsSinceLastRender = (currentTime-lastRenderTime)/1000
-        if (secondsSinceLastRender < 1/ GLOBAL_SPEED) return
-        lastRenderTime = currentTime
-        //console.log(currentTime/1000)
-        //time = currentTime
-        gameLoop(pacman, ghosts)
+        return
+    }
+    if (pauseGame){
+        return
     }
     window.requestAnimationFrame(mainLoop)
+    //unPause()
+    const secondsSinceLastRender = (currentTime-lastRenderTime)/1000
+    if (secondsSinceLastRender < 1/ GLOBAL_SPEED) return
+    lastRenderTime = currentTime
+    let TT = Math.round(currentTime/1000)
+    console.log(TT)
+    time = TT
+    gameLoop(pacman, ghosts)
 }
 
 function restartGameMain(){
@@ -183,7 +182,8 @@ function restartGameMain(){
 function pauseGameMain(){
     pauseGame = true
     pauseButton.classList.add('hide');
-    unPauseButton.classList.remove('hide');   
+    unPauseButton.classList.remove('hide');
+    restartButton.classList.remove('hide');   
 }
 
 function hide(){
@@ -193,6 +193,9 @@ function hide(){
 }
 
 function unPause(){
+    pauseGame = false
+    unPauseButton.classList.add('hide')
+    pauseButton.classList.remove('hide')
     window.requestAnimationFrame(mainLoop)
 }
 
