@@ -170,7 +170,7 @@ function mainLoop(currentTime){
     if (secondsSinceLastRender < 1/ GLOBAL_SPEED) return
     lastRenderTime = currentTime
     let TT = Math.round(currentTime/1000)
-    console.log(TT)
+    //console.log(TT)
     time = TT
     gameLoop(pacman, ghosts)
 }
@@ -181,6 +181,7 @@ function restartGameMain(){
 
 function pauseGameMain(){
     pauseGame = true
+    console.log('pause')
     pauseButton.classList.add('hide');
     unPauseButton.classList.remove('hide');
     restartButton.classList.remove('hide');   
@@ -207,3 +208,41 @@ startButton.addEventListener('click', startGame);
 restartButton.addEventListener('click', restartGameMain)
 pauseButton.addEventListener('click', pauseGameMain)
 unPauseButton.addEventListener('click', unPause)
+
+// window.onkeydown= function(e){
+//     if(e.keyCode === 32){
+//         pauseGameMain
+//     }
+// }
+
+window.addEventListener('keydown', (e)=>{
+    if (e.key === 'p'){
+        pauseGameMain()
+    }
+    return
+    }
+)
+
+window.addEventListener('keydown', (e)=>{
+    if (e.key === 'u'){
+        unPause()
+    }
+    return
+    }
+)
+
+window.addEventListener('keydown', (e)=>{
+    if (e.key === 'r'){
+        restartGameMain()
+    }
+    return
+    }
+)
+
+window.addEventListener('keydown', (e)=>{
+    if (e.key === 's'){
+        startGame()
+    }
+    return
+    }
+)
